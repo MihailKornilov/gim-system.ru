@@ -1,7 +1,6 @@
 <?php
+require_once 'content.php';
 
 
 
-
-
-die();
+die(GIM_html());

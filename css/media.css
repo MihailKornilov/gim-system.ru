@@ -1,0 +1,102 @@
+@media (min-width: 320px) and (max-width: 767px){
+    .container{
+        padding: 0 15px;
+    }
+    .header{
+        position: relative;
+    }
+    .header-logo{
+        order: 1;
+    }
+    .header-login{
+        order: 2;
+    }
+    .navigation{
+        order: 3;
+        position: relative;
+        width: 100%;
+    }
+    .navigation-mobile{
+        display: block;
+    }
+    .menu{
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 15px;
+    }
+    .menu_open{
+        display: block;
+    }
+    .menu__item{
+        margin: 8px 0;
+    }
+    .menu__link{
+        padding-bottom: 0;
+    }
+    .title{
+        flex-direction: column;
+    }
+    h2{
+        margin: 10px 0;
+        font-size: 18px;
+    }
+    .cta{
+        padding: 30px 0;
+    }
+    .cta__text{
+        padding: 15px;
+    }
+    .cta__title{
+        font-size: 20px;
+    }
+    .cta__description{
+        font-size: 16px;
+    }
+    .services__items{
+        margin-top: 50px;
+    }
+    .services__items-single{
+        max-width: 100%;
+    }
+    .services-item__description{
+        font-size: 16px;
+    }
+    .why__text p{
+        font-size: 16px;
+    }
+    .faqs-item__title{
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 16px;
+        text-transform: none;
+    }
+    .faqs-item__answer{
+        padding: 10px;
+        font-size: 14px;
+    }
+    .contacts__items > * {
+        margin: 0;
+    }
+    .contacts-info{
+        margin-bottom: 30px;
+        padding: 30px;
+    }
+    .contacts-form__form{
+        padding: 15px;
+    }
+    .btn-subtim{
+        width: auto;
+        padding: 0 15px;
+    }
+    .footer,
+    .header{
+        padding: 10px 0;
+    }
+    .footer .navigation{
+        display: none;
+    }
+    .socials{
+        order: 2;
+    }
+}
