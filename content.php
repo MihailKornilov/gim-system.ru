@@ -16,8 +16,8 @@ function GIM_html() {
 		'<meta name="keywords" content="text, test">'.
 		'<meta name="description" content="very long text description">'.
 		'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>'.
-		'<link rel="stylesheet" href="css/style.css">'.
-		'<link rel="stylesheet" href="css/media.css">'.
+		'<link rel="stylesheet" href="css/style.css?3">'.
+		'<link rel="stylesheet" href="css/media.css?2">'.
 	'</head>'.
 
 	'<body>'.
@@ -76,79 +76,35 @@ function GIM_about() {
 	</section>';
 }
 function GIM_services() {
+	$sql = "SELECT *
+			FROM `_spisok`
+			WHERE `dialog_id`=1321
+			  AND `num_1`
+			ORDER BY `sort`
+			LIMIT 6";
+	$arr = query_arr($sql);
+
+	$send = '';
+	foreach($arr as $r) {
+		$send .=
+			'<div class="services__items-single">'.
+				'<a class="services-item">'.
+					'<div class="services-item__top">'.
+						'<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>'.
+						'<div class="services-item__title">'.$r['txt_1'].'</div>'.
+					'</div>'.
+					'<div class="services-item__description">'._br($r['txt_2']).'</div>'.
+				'</a>'.
+			'</div>';
+	}
 	return
 	'<section class="services">
 		<div class="container">
-			<div class="title"><span></span>
-				<h2>виды деятельности</h2><span></span></div>
-			<div class="services__items">
-				<div class="services__items-single">
-					<a href="#" class="services-item">
-						<div class="services-item__top">
-							<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>
-							<div class="services-item__title">Ремонт мобильной и орг. техники</div>
-						</div>
-						<div class="services-item__description">Организация и управление сварочным цехом и какое-то описание
-							побольше
-						</div>
-					</a>
-				</div>
-				<div class="services__items-single">
-					<a href="#" class="services-item">
-						<div class="services-item__top">
-							<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>
-							<div class="services-item__title">Продажа и установка изделий из ПВХ</div>
-						</div>
-						<div class="services-item__description">Организация и управление сварочным цехом и какое-то описание
-							побольше
-						</div>
-					</a>
-				</div>
-				<div class="services__items-single">
-					<a href="#" class="services-item">
-						<div class="services-item__top">
-							<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>
-							<div class="services-item__title">Сварочный цех</div>
-						</div>
-						<div class="services-item__description">Организация и управление сварочным цехом и какое-то описание
-							побольше
-						</div>
-					</a>
-				</div>
-				<div class="services__items-single">
-					<a href="#" class="services-item">
-						<div class="services-item__top">
-							<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>
-							<div class="services-item__title">Еженедельная газета - рекламное печатное издание</div>
-						</div>
-						<div class="services-item__description">Организация и управление сварочным цехом и какое-то описание
-							побольше
-						</div>
-					</a>
-				</div>
-				<div class="services__items-single">
-					<a href="#" class="services-item">
-						<div class="services-item__top">
-							<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>
-							<div class="services-item__title">Мебельная фабрика</div>
-						</div>
-						<div class="services-item__description">Организация и управление сварочным цехом и какое-то описание
-							побольше
-						</div>
-					</a>
-				</div>
-				<div class="services__items-single">
-					<a href="#" class="services-item">
-						<div class="services-item__top">
-							<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>
-							<div class="services-item__title">Сервисный центр</div>
-						</div>
-						<div class="services-item__description">Организация и управление сварочным цехом и какое-то описание
-							побольше
-						</div>
-					</a>
-				</div>
-			</div>
+			<div class="title">'.
+				'<span></span>'.
+				'<h2>виды деятельности</h2>'.
+				'<span></span></div>
+			<div class="services__items">'.$send.'</div>
 		</div>
 	</section>';
 }
