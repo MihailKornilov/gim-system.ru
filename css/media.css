@@ -99,4 +99,44 @@
     .socials{
         order: 2;
     }
+    /*Documentation*/
+    .doc-container{
+        padding: 0 15px;
+    }
+    .doc-header{
+        order: 3;
+        width: 100%;
+    }
+    .doc-header__title{
+        margin: 10px 0;
+    }
+    .doc-breadcrumbs__link{
+        display: block;
+        margin: 5px 0;
+    }
+    .doc-breadcrumbs__menu span:not(:last-child){
+        display: none;
+    }
+    .doc-info{
+        background-color: #fff;
+    }
+    .doc-info__mobile-menu{
+        display: block;
+    }
+    .doc-sidebar{
+        display: none;
+        width: 100%;
+        padding: 0;
+        border-right:none;
+    }
+    .doc-sidebar_opened{
+        display: block;
+    }
+    .doc-sidebar__link_active{
+        border-right: 1px solid #00B6BC;
+    }
+    .doc-content{
+        width: 100%;
+        border-right:none;
+    }
 }

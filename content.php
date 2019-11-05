@@ -16,8 +16,8 @@ function GIM_html() {
 		'<meta name="keywords" content="text, test">'.
 		'<meta name="description" content="very long text description">'.
 		'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>'.
-		'<link rel="stylesheet" href="css/style.css?3">'.
-		'<link rel="stylesheet" href="css/media.css?2">'.
+		'<link rel="stylesheet" href="css/style.css?'.PREFIX.'">'.
+		'<link rel="stylesheet" href="css/media.css?'.PREFIX.'">'.
 	'</head>'.
 
 	'<body>'.
@@ -30,7 +30,7 @@ function GIM_html() {
 		GIM_contacts().
 		GIM_footer().
 
-		'<script src="js/custom.js"></script>'.
+		'<script src="js/custom.js?'.PREFIX.'"></script>'.
 	'</body>'.
 	'</html>';
 }
