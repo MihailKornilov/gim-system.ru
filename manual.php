@@ -27,6 +27,7 @@ function _arrChildOne($child, $parent_id=0) {//расстановка дочер
 
 function GIM_MANUAL_html() {
 	define('GIM_APP', _num(@$_GET['app']));
+	define('GIM_PAGE', _num(@$_GET['page']));
 
 	return
 	'<!DOCTYPE html>'.
@@ -110,13 +111,11 @@ function GIM_MANUAL_menu() {
 
 	$MP = _arrChild($MP);
 
-	$n = 0;
 	$html = '';
 	foreach($MP as $id => $sp) {
-		$active = !$n++ ? ' doc-sidebar__link_active' : '';
 		$html .=
 		'<li class="doc-sidebar__item doc-sidebar__item_opened">'.
-			'<a href="#" class="doc-sidebar__link'.$active.'">'.$sp['txt_1'].'</a>'.
+			'<a href="manual.php?app='.GIM_APP.'&page='.$id.'" class="doc-sidebar__link'.GIM_MANUAL_menuActive($sp).'">'.$sp['txt_1'].'</a>'.
 			GIM_MANUAL_submenu($sp).
 		'</li>';
 	}
@@ -135,16 +134,24 @@ function GIM_MANUAL_menu() {
 		'</div>'.
 	'</section>';
 }
+function GIM_MANUAL_menuActive($sp) {//установка активности страницы
+	$clsAct = ' doc-sidebar__link_active';
+	if(!GIM_PAGE)
+		return $sp['num_1'] ? $clsAct : '';
+	if(GIM_PAGE == $sp['id'])
+		return $clsAct;
+	return '';
+}
 function GIM_MANUAL_submenu($sp) {//вывод подразделов
 	if(empty($sp['child']))
 		return '';
 
 	$send = '<ul class="doc-sidebar__submenu">';
 
-	foreach($sp['child'] as $sub) {
+	foreach($sp['child'] as $id => $sub) {
 		$send .=
 			'<li class="doc-sidebar__item">'.
-				'<a href="#" class="doc-sidebar__link">'.$sub['txt_1'].'</a>'.
+				'<a href="manual.php?app='.GIM_APP.'&page='.$id.'" class="doc-sidebar__link'.GIM_MANUAL_menuActive($sub).'">'.$sub['txt_1'].'</a>'.
 				GIM_MANUAL_submenu($sub).
 			'</li>';
 	}

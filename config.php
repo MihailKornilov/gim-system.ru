@@ -18,7 +18,7 @@ require_once GLOBAL_DIR.'/inc/mysql.php';
 //id приложения, отвечающего за управление сайтом
 define('MANAGE_APP_ID', 8);
 
-define('PREFIX', LOCAL ? rand(1,99999) : 0);
+define('PREFIX', LOCAL ? rand(1,99999) : 1);
 
 
 
