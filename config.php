@@ -2,6 +2,11 @@
 setlocale(LC_ALL, 'ru_RU.UTF-8');
 setlocale(LC_NUMERIC, 'en_US');
 
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
+
+
 define('DEBUG', false);
 define('GLOBAL_DIR', dirname(__FILE__));
 define('DOMAIN', $_SERVER['SERVER_NAME']);
