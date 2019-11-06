@@ -6,9 +6,28 @@ require_once 'config.php';
 die(GIM_MANUAL_html());
 
 
+function _arrChild($ARR) {//формирование массива с дочерними значеними по `parent_id`
+	$send = array();
+	foreach($ARR as $id => $r)
+		$send[$r['parent_id']][$id] = $r;
+	return _arrChildOne($send);
+}
+function _arrChildOne($child, $parent_id=0) {//расстановка дочерних значений
+	if(!$send = @$child[$parent_id])
+		return array();
+
+	foreach($send as $id => $r)
+		$send[$id]['child'] = _arrChildOne($child, $id);
+
+	return $send;
+}
+
+
 
 
 function GIM_MANUAL_html() {
+	define('GIM_APP', _num(@$_GET['app']));
+
 	return
 	'<!DOCTYPE html>'.
 	'<html lang="en">'.
@@ -53,11 +72,17 @@ function GIM_MANUAL_header() {//шапка
 	'</header>';
 }
 function GIM_MANUAL_path() {//путь
+	$sql = "SELECT *
+			FROM `_app`
+			WHERE `id`=".GIM_APP;
+	if(!$app = query_assoc($sql))
+		return '';
+
 	return
 	'<section class="doc-breadcrumbs">'.
 		'<div class="doc-container">'.
 			'<div class="doc-breadcrumbs__menu">'.
-				'<a href="#" class="doc-breadcrumbs__link">Ремонт мобильной техники</a>'.
+				'<a href="#" class="doc-breadcrumbs__link">'.$app['name'].'</a>'.
 				'<span> » </span>'.
 				'<a href="#" class="doc-breadcrumbs__link">Описание</a>'.
 				'<span> » </span>'.
@@ -67,44 +92,73 @@ function GIM_MANUAL_path() {//путь
 	'</section>';
 }
 function GIM_MANUAL_menu() {
-	$spisok = array(
-		1 => 'Обзор приложения',
-		2 => 'Клиенты',
-		3 => 'Заявки',
-		4 => 'Деньги',
-		5 => 'Зарплата сотрудников',
-		6 => 'Настройки'
-	);
+	//получение данных о приложении
+	$sql = "SELECT *
+			FROM `_app`
+			WHERE `id`=".GIM_APP;
+	if(!$app = query_assoc($sql))
+		return GIM_MANUAL_appFail('Приложение не найдено.');
 
+	//получение списка страниц
+	$sql = "SELECT *
+			FROM `_spisok`
+			WHERE `app_id`=".$app['id']."
+			  AND `dialog_id`=121
+			ORDER BY `parent_id`,`sort`";
+	if(!$MP = query_arr($sql))
+		return GIM_MANUAL_appFail('Руководство не создано.');
+
+	$MP = _arrChild($MP);
+
+	$n = 0;
 	$html = '';
-	foreach($spisok as $id => $sp) {
-		$active = $id == 1 ? ' doc-sidebar__link_active' : '';
+	foreach($MP as $id => $sp) {
+		$active = !$n++ ? ' doc-sidebar__link_active' : '';
 		$html .=
 		'<li class="doc-sidebar__item doc-sidebar__item_opened">'.
-			'<a href="#" class="doc-sidebar__link'.$active.'">'.$sp.'</a>';
-
-		if($id == 2)
-			$html .=
-			'<ul class="doc-sidebar__submenu">
-				<li class="doc-sidebar__item"><a href="#" class="doc-sidebar__link">Список клиентов</a></li>
-				<li class="doc-sidebar__item"><a href="#" class="doc-sidebar__link">Внесение нового клиента</a></li>
-				<li class="doc-sidebar__item"><a href="#" class="doc-sidebar__link">Информация о клиенте</a></li>
-				<li class="doc-sidebar__item"><a href="#" class="doc-sidebar__link">Редактирование клиента</a></li>
-			</ul>';
-
-		$html .= '</li>';
+			'<a href="#" class="doc-sidebar__link'.$active.'">'.$sp['txt_1'].'</a>'.
+			GIM_MANUAL_submenu($sp).
+		'</li>';
 	}
 
 	return
-	'<section class="doc-info">
-		<div class="doc-container">
-			<div class="doc-info__wrapper">
-				<div class="doc-sidebar">
-					<ul class="doc-sidebar__menu">'.$html.'</ul>'.
+	'<section class="doc-info">'.
+		'<div class="doc-container">'.
+			'<div class="doc-info__wrapper">'.
+				'<div class="doc-sidebar">'.
+					'<ul class="doc-sidebar__menu">'.$html.'</ul>'.
 				'</div>'.
 
 				GIM_MANUAL_content().
 
+			'</div>'.
+		'</div>'.
+	'</section>';
+}
+function GIM_MANUAL_submenu($sp) {//вывод подразделов
+	if(empty($sp['child']))
+		return '';
+
+	$send = '<ul class="doc-sidebar__submenu">';
+
+	foreach($sp['child'] as $sub) {
+		$send .=
+			'<li class="doc-sidebar__item">'.
+				'<a href="#" class="doc-sidebar__link">'.$sub['txt_1'].'</a>'.
+				GIM_MANUAL_submenu($sub).
+			'</li>';
+	}
+
+	$send .= '</ul>';
+
+	return $send;
+}
+function GIM_MANUAL_appFail($msg) {
+	return
+	'<section class="doc-info">'.
+		'<div class="doc-container">'.
+			'<div class="doc-fail">'.
+				'<div>'.$msg.'</div>'.
 			'</div>'.
 		'</div>'.
 	'</section>';

@@ -79,6 +79,8 @@ img{
 /*Header*/
 .header{
     padding: 5px 0;
+    border-bottom: 1px solid #DDD;
+    background-color:#fafafa;
 }
 .header__inner{
     display: flex;
@@ -417,9 +419,9 @@ img{
 }
 .copyright{
     width: 100%;
-    padding: 7px;
-    background-color: #E9E9E9;
-    border-top:#D0D0D0 solid 1px;
+    padding:7px 0 6px;
+    background-color: #FAFAFA;
+    border-top:#DDD solid 1px;
     font-size: 14px;
     text-transform: uppercase;
     text-align: center;
@@ -429,6 +431,18 @@ img{
     max-width: 1050px;
     margin: 0 auto;
     color: #000;
+}
+.doc-fail{
+    padding:50px 0;
+}
+.doc-fail div{
+    padding:50px;
+    text-align:center;
+    border:#ddd solid 1px;
+    border-radius:2px;
+    font-size:22px;
+    color:#922;
+    background-color:#fff;
 }
 .doc-header{
     display: flex;
@@ -466,7 +480,7 @@ img{
     height: 40px;
     line-height: 38px;
     padding: 0 15px;
-    background-color: #F3F3F3;
+    background-color: #fff;
     border: 1px solid #E9E9E9;
     border-left:none;
     -webkit-border-radius: 0;
@@ -477,8 +491,7 @@ img{
     color: #333333;
 }
 .doc-breadcrumbs{
-    border-top: 1px solid #333333;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #00B6BC;
 }
 .doc-breadcrumbs__menu{
     padding: 20px 0;
@@ -551,8 +564,7 @@ img{
     position: relative;
     display: flex;
     align-items: center;
-    height: 38px;
-    padding: 0 15px;
+    padding:8px 15px;
     border: 1px solid transparent;
     border-right:none;
     font-size: 16px;
