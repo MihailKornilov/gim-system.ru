@@ -6,28 +6,13 @@ require_once 'config.php';
 die(GIM_MANUAL_html());
 
 
-function _arrChild($ARR) {//формирование массива с дочерними значеними по `parent_id`
-	$send = array();
-	foreach($ARR as $id => $r)
-		$send[$r['parent_id']][$id] = $r;
-	return _arrChildOne($send);
-}
-function _arrChildOne($child, $parent_id=0) {//расстановка дочерних значений
-	if(!$send = @$child[$parent_id])
-		return array();
-
-	foreach($send as $id => $r)
-		$send[$id]['child'] = _arrChildOne($child, $id);
-
-	return $send;
-}
 
 
 
 
 function GIM_MANUAL_html() {
 	define('GIM_APP', _num(@$_GET['app']));
-	define('GIM_PAGE', _num(@$_GET['page']));
+	define('GIM_PAGE', GIM_MANUAL_pageIdGet());
 
 	return
 	'<!DOCTYPE html>'.
@@ -92,6 +77,27 @@ function GIM_MANUAL_path() {//путь
 		'</div>'.
 	'</section>';
 }
+function GIM_MANUAL_pageIdGet() {//получение текущей ID страницы
+	if($page_id = _num(@$_GET['page'])) {
+		$sql = "SELECT COUNT(*)
+				FROM `_spisok`
+				WHERE `app_id`=".GIM_APP."
+				  AND `dialog_id`=121
+				  AND `id`=".$page_id;
+		if(query_value($sql))
+			return $page_id;
+		return 0;
+	}
+
+	//страница по умолчанию
+	$sql = "SELECT `id`
+			FROM `_spisok`
+			WHERE `app_id`=".GIM_APP."
+			  AND `dialog_id`=121
+			  AND `num_1`
+			LIMIT 1";
+	return _num(query_value($sql));
+}
 function GIM_MANUAL_menu() {
 	//получение данных о приложении
 	$sql = "SELECT *
@@ -135,11 +141,8 @@ function GIM_MANUAL_menu() {
 	'</section>';
 }
 function GIM_MANUAL_menuActive($sp) {//установка активности страницы
-	$clsAct = ' doc-sidebar__link_active';
-	if(!GIM_PAGE)
-		return $sp['num_1'] ? $clsAct : '';
 	if(GIM_PAGE == $sp['id'])
-		return $clsAct;
+		return ' doc-sidebar__link_active';
 	return '';
 }
 function GIM_MANUAL_submenu($sp) {//вывод подразделов
@@ -171,24 +174,61 @@ function GIM_MANUAL_appFail($msg) {
 	'</section>';
 }
 function GIM_MANUAL_content() {
+	$sql = "SELECT *
+			FROM `_spisok`
+			WHERE `id`=".GIM_PAGE."
+			  AND !`deleted`";
+	if(!$page = query_assoc($sql))
+		return
+		'<div class="doc-content">'.
+			'<div class="doc-fail">'.
+				'<div>Страницы не существует.</div>'.
+			'</div>'.
+		'</div>';
+
+	$sql = "SELECT *
+			FROM `_spisok`
+			WHERE `dialog_id`=122
+			  AND `num_2`=".GIM_PAGE."
+			  AND !`deleted`
+			ORDER BY `sort`";
+	if(!$PRGF = query_arr($sql))
+		return
+		'<div class="doc-content">'.
+			'<div class="doc-fail">'.
+				'<div>Страница пустая.</div>'.
+			'</div>'.
+		'</div>';
+
+	$send = '';
+	foreach($PRGF as $r) {
+		switch($r['num_1']) {
+			//текст
+			case 1:
+				$send .= '<p>'.$r['txt_1'].'</p>';
+				break;
+			//изображение
+			case 2:
+				if(!$image_id = _idsFirst($r['txt_2']))
+					break;
+
+				$sql = "SELECT *
+						FROM `_image`
+						WHERE `id`=".$image_id;
+				if(!$img = query_assoc($sql))
+					break;
+
+				$send .= '<p>'._imageHtml($img, 670).'</p>';
+				break;
+		}
+	}
+
 	return
 	'<div class="doc-content">'.
-		'<div class="doc-content__title">Обзор приложения</div>'.
-		'<div class="doc-content__text">'.
-			'<p>Данное руководство содержит описание функционала приложения <span>Ремонт мобильной техники.</span></p>'.
-			'<p>Корневые разделы расположены в порядке значимости, в подразделах расписаны все возможные функции приложения.</p>'.
-			'<p>3."Черный список".Есть возможность добавления клиента в черный список (этот знак и есть'.
-				'добавление клиента в черный список)- клиента мы добавляем в черный список, потому что'.
-				'не хотим больше иметь дела с этим клиентом, т.к клиент постоянно названивает, либочто-то'.
-				'не так сделали, из-за маленькой помарочки говорит, чтобы вы переделывали, хотя лучше'.
-				'уже никак не сделать, в общем вы увидите когда надо клиента добавлять в черный список.</p>'.
-			'<img src="img/doc-img-example.png" alt="img text">'.
-		'</div>'.
+		'<div class="doc-content__title">'.$page['txt_1'].'</div>'.
+		'<div class="doc-content__text">'.$send.'</div>'.
 	'</div>';
 }
-
-
-
 
 
 
