@@ -111,6 +111,7 @@ function GIM_MANUAL_menu() {
 			FROM `_spisok`
 			WHERE `app_id`=".$app['id']."
 			  AND `dialog_id`=121
+			  AND `num_3`
 			ORDER BY `parent_id`,`sort`";
 	if(!$MP = query_arr($sql))
 		return GIM_MANUAL_appFail('Руководство не создано.');
@@ -177,6 +178,7 @@ function GIM_MANUAL_content() {
 	$sql = "SELECT *
 			FROM `_spisok`
 			WHERE `id`=".GIM_PAGE."
+			  AND `num_3`
 			  AND !`deleted`";
 	if(!$page = query_assoc($sql))
 		return
@@ -190,6 +192,7 @@ function GIM_MANUAL_content() {
 			FROM `_spisok`
 			WHERE `dialog_id`=122
 			  AND `num_2`=".GIM_PAGE."
+			  AND `num_3`
 			  AND !`deleted`
 			ORDER BY `sort`";
 	if(!$PRGF = query_arr($sql))
