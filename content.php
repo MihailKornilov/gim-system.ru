@@ -86,9 +86,10 @@ function GIM_services() {
 
 	$send = '';
 	foreach($arr as $r) {
+		$href = $r['num_2'] ? ' href="/manual.php?app='.$r['num_2'].'"' : '';
 		$send .=
 			'<div class="services__items-single">'.
-				'<a class="services-item">'.
+				'<a'.$href.' class="services-item">'.
 					'<div class="services-item__top">'.
 						'<div class="services-item__icon"><img src="img/service-icon.svg" alt="SN"></div>'.
 						'<div class="services-item__title">'.$r['txt_1'].'</div>'.

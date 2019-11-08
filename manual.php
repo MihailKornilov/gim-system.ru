@@ -44,7 +44,7 @@ function GIM_MANUAL_header() {//шапка
 	'<header class="header">'.
 		'<div class="doc-container">'.
 			'<div class="header__inner">'.
-				'<a href="#" class="header-logo"><img src="img/logo-v1.svg" alt="GIM"></a>'.
+				'<a href="/" class="header-logo"><img src="img/logo-v1.svg" alt="GIM"></a>'.
 				'<div class="doc-header">'.
 					'<div class="doc-header__title">руководство</div>'.
 					'<form method="get" class="doc-header__search">'.
@@ -208,7 +208,7 @@ function GIM_MANUAL_content() {
 		switch($r['num_1']) {
 			//текст
 			case 1:
-				$send .= '<p>'.$r['txt_1'].'</p>';
+				$send .= '<p>'._br($r['txt_1']).'</p>';
 				break;
 			//изображение
 			case 2:

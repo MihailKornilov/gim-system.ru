@@ -173,9 +173,9 @@ img{
     width: 100%;
     padding: 20px;
     border: 1px solid #E9E9E9;
+    cursor:pointer;
 }
 .services-item:hover{
-    margin: -5px 0 0 0 ;
     background: #E9E9E9;
 }
 .services-item__top{
