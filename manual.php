@@ -221,7 +221,11 @@ function GIM_MANUAL_content() {
 				if(!$img = query_assoc($sql))
 					break;
 
-				$send .= '<p>'._imageHtml($img, 670).'</p>';
+				$send .=
+					'<div class="image">'.
+						_imageHtml($img, 670).
+		($r['txt_3'] ? '<div class="podpis">'._br($r['txt_3']).'</div>' : '').//подпись
+					'</div>';
 				break;
 		}
 	}

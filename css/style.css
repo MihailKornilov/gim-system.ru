@@ -613,13 +613,27 @@ img{
     font-size: 16px;
 }
 .doc-content__text p{
-    margin: 0 0 20px;
+    margin: 0 0 30px;
 }
+.doc-content__text .image{margin-bottom:30px}
 .doc-content__text img{
     display: block;
     max-width: 100%;
-    margin: 0 auto 30px auto;
+    margin: 0 auto 5px auto;
 }
 .doc-content__text span{
     font-family:'Roboto-Bold';
 }
+.doc-content__text .podpis{
+    text-align:center;
+    color:#777;
+    font:italic 14px Arial;
+}
+
+
+
+
+
+
+
+
