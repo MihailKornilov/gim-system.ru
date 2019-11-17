@@ -227,6 +227,17 @@ function GIM_MANUAL_content() {
 		($r['txt_3'] ? '<div class="podpis">'._br($r['txt_3']).'</div>' : '').//подпись
 					'</div>';
 				break;
+			//видеоролик
+			case 3:
+				if(empty($r['txt_4']))
+					break;
+				$el['width'] = 600;
+				$send .=
+					'<div class="image">'.
+						_elem76iframe($el, $r['txt_4']).
+		($r['txt_3'] ? '<div class="podpis">'._br($r['txt_3']).'</div>' : '').
+					'</div>';
+				break;
 		}
 	}
 

@@ -615,7 +615,7 @@ img{
 .doc-content__text p{
     margin: 0 0 30px;
 }
-.doc-content__text .image{margin-bottom:30px}
+.doc-content__text .image{margin-bottom:30px;text-align:center}
 .doc-content__text img{
     display: block;
     max-width: 100%;

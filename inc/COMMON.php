@@ -245,6 +245,45 @@ function _imageResize($x_cur, $y_cur, $x_new, $y_new) {//изменение ра
 
 
 
+function _elem76iframe($el, $url) {//получение фрейма для вставки ролика
+	$code = '';
+	if(strpos($url, 'youtu.be')) {
+		$ex = explode('youtu.be/', $url);
+		if(!empty($ex[1]))
+			$code = $ex[1];
+	} elseif(strpos($url, 'watch')) {
+		$ex = explode('watch?v=', $url);
+		if(!empty($ex[1])) {
+			$code = $ex[1];
+			if(strpos($code, '&')) {
+				$ex = explode('&', $code);
+				$code = $ex[0];
+			}
+		}
+	}
+
+	if(!$code)
+		return '';
+
+	//делитель соотношения сторон
+	$del = 0.5625;
+	$w = $el['width'] ? $el['width'] : _elemWidth($el);
+	$w -= 12;
+	$h = round($w * $del);
+
+	return
+	'<iframe'.
+		' width="'.$w.'"'.
+		' height="'.$h.'"'.
+		' src="https://www.youtube.com/embed/'.$code.'"'.
+		' frameborder="0"'.
+		' allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"'.
+		' allowfullscreen'.
+	'></iframe>';
+}
+
+
+
 
 
 
