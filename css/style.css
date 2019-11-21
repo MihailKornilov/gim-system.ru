@@ -422,7 +422,7 @@ img{
     width: 100%;
     padding:7px 0 6px;
     background-color: #FAFAFA;
-    border-top:#DDD solid 1px;
+    border-top:#B7E7E9 solid 1px;
     font-size: 14px;
     text-transform: uppercase;
     text-align: center;
@@ -492,7 +492,7 @@ img{
     color: #333333;
 }
 .doc-breadcrumbs{
-    border-bottom: 1px solid #00B6BC;
+    border-bottom: 1px solid #B7E7E9;
 }
 .doc-breadcrumbs__menu{
     padding: 20px 0;
@@ -549,7 +549,7 @@ img{
     width: 280px;
     padding: 30px 0;
     background-color: #F3F3F3;
-    border-right: 1px solid #00B6BC;
+    border-right: 1px solid #B7E7E9;
 }
 .doc-sidebar__menu,
 .doc-sidebar__submenu{
@@ -565,18 +565,18 @@ img{
     position: relative;
     display: flex;
     align-items: center;
-    padding:8px 15px;
+    padding:6px 10px;
     border: 1px solid transparent;
     border-right:none;
-    font-size: 16px;
+    font-size: 14px;
     font-weight:bold;
     color: #333333;
 }
-.doc-sidebar__submenu .doc-sidebar__link{font-weight:normal}
+.doc-sidebar__submenu .doc-sidebar__link{font-weight:normal;color:#555}
 .doc-sidebar__link:hover{background-color:#fff}
 .doc-sidebar__link_active{
     background-color: #fff;
-    border: 1px solid #00B6BC;
+    border: 1px solid #B7E7E9;
     border-right: none;
 }
 .doc-sidebar__arrow{
@@ -600,15 +600,16 @@ img{
 }
 .doc-content{
     width:720px;
-    border-right:1px solid #00B6BC;
+    border-right:1px solid #B7E7E9;
     padding-right:50px;
+    padding-bottom:50px;
 }
 .doc-content__title{
     margin-bottom: 30px;
-    padding: 30px 0;
+    padding: 20px 0;
     font-family:'Roboto-Bold',sans-serif;
     font-size: 24px;
-    border-bottom: 1px solid #00B6BC;
+    border-bottom: 1px solid #B7E7E9;
 }
 .doc-content__text{
     font-size: 16px;
@@ -616,7 +617,7 @@ img{
 .doc-content__text p{
     margin: 0 0 30px;
 }
-.doc-content__text .image{margin:20px 0 30px;text-align:center}
+.doc-content__text .image{margin:20px 0;text-align:center}
 .doc-content__text img{
     display: block;
     max-width: 100%;
@@ -637,7 +638,8 @@ img{
 
 /* Форматированные текст ckeditor5 (через [5]) */
 .ck-content,
-.ck-content *{font-size:15px}
+.ck-content *{font:15px arial}
+.ck-content i,
 .ck-content i strong{font-style:italic}
 .ck-content strong{font-weight:bold}
 .ck-content i,.ck-content strong{font-size:inherit}
