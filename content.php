@@ -103,7 +103,7 @@ function GIM_services() {
 		<div class="container">
 			<div class="title">'.
 				'<span></span>'.
-				'<h2>виды деятельности</h2>'.
+				'<h6>виды деятельности</h6>'.
 				'<span></span></div>
 			<div class="services__items">'.$send.'</div>
 		</div>
@@ -114,7 +114,7 @@ function GIM_why() {
 	'<section class="why">
 		<div class="container">
 			<div class="title"><span></span>
-				<h2>почему мы?</h2><span></span></div>
+				<h6>почему мы?</h6><span></span></div>
 			<div class="why__text">
 				<p>Система управления малым бизнесом, позволяющая вести учёт входящих данных,
 					контролировать выполнение задач, поставленные сотрудникам, просматривать
@@ -131,7 +131,7 @@ function GIM_faq() {
 	'<section class="faqs">
 		<div class="container">
 			<div class="title"><span></span>
-				<h2>часто задаваемые вопросы</h2><span></span></div>
+				<h6>часто задаваемые вопросы</h6><span></span></div>
 			<div class="faqs__items">
 				<div class="faqs-item faqs-item_opened">
 					<div class="faqs-item__qustion">
@@ -198,7 +198,7 @@ function GIM_contacts() {
 	'<section class="contacts">
 		<div class="container">
 			<div class="title"><span></span>
-				<h2>Контакты</h2><span></span></div>
+				<h6>Контакты</h6><span></span></div>
 			<div class="contacts__items">
 				<div class="contacts-info">
 					<div class="contacts-info__title">наши контакты</div>

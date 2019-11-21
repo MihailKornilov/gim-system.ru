@@ -208,7 +208,7 @@ function GIM_MANUAL_content() {
 		switch($r['num_1']) {
 			//текст
 			case 1:
-				$send .= '<p>'._br($r['txt_1']).'</p>';
+				$send .= '<div class="ck-content">'.htmlspecialchars_decode($r['txt_1']).'</div>';
 				break;
 			//изображение
 			case 2:

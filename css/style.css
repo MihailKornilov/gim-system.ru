@@ -26,6 +26,7 @@ body{
     box-sizing: border-box;
 }
 a, button{
+    color:#009BA0;
     text-decoration: none;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -36,7 +37,7 @@ a, button{
 a, input, button, textarea{
     outline: none;
 }
-h2{
+h6{
     margin: 0;
     font-family: 'Roboto-Bold', sans-serif;
     font-size: 30px;
@@ -73,8 +74,8 @@ img{
     text-transform: uppercase;
 }
 .btn:hover{
-    color: #00B6BC;
-    background-color: #fff;
+    background-color: #00C9D0;
+    border-color:#00C9D0;
 }
 /*Header*/
 .header{
@@ -472,8 +473,8 @@ img{
     cursor: pointer;
 }
 .btn-doc-submit:hover{
-    background-color: #fff;
-    color: #00B6BC;
+    background-color: #00C9D0;
+    border-color:#00C9D0;
 }
 .inp-doc-search{
     width: 100%;
@@ -615,7 +616,7 @@ img{
 .doc-content__text p{
     margin: 0 0 30px;
 }
-.doc-content__text .image{margin-bottom:30px;text-align:center}
+.doc-content__text .image{margin:20px 0 30px;text-align:center}
 .doc-content__text img{
     display: block;
     max-width: 100%;
@@ -632,6 +633,33 @@ img{
 
 
 
+
+
+/* Форматированные текст ckeditor5 (через [5]) */
+.ck-content,
+.ck-content *{font-size:15px}
+.ck-content i strong{font-style:italic}
+.ck-content strong{font-weight:bold}
+.ck-content i,.ck-content strong{font-size:inherit}
+.ck-content p{margin:10px 0 10px}
+.ck-content h1{
+	font:normal 22px Arial;
+	margin:15px 0;
+	padding-bottom:8px;
+	border-bottom:#DEE3EF solid 1px;
+}
+.ck-content h2{font:normal 20px Arial;margin:12px 0}
+.ck-content h3{font:normal 17px Arial;margin:10px 0}
+.ck-content blockquote{
+    border-left:#ccc solid 6px;
+    background-color:#f4f4f4;
+    margin:15px 0;
+    padding:1px 5px 1px 15px;
+}
+.ck-content ul,
+.ck-content ol{padding:0;margin:10px 0 10px 45px}
+.ck-content li{padding:3px 0}
+.ck-content a:hover{text-decoration:underline}
 
 
 
