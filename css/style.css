@@ -508,7 +508,7 @@ img{
   font-family:'Roboto-Bold', sans-serif;
 }
 .doc-info{
-    background-color: #F3F3F3;
+    background-color: #F5F7F9;
 }
 .doc-info__wrapper{
     display: flex;
@@ -548,7 +548,7 @@ img{
 .doc-sidebar{
     width: 280px;
     padding: 30px 0;
-    background-color: #F3F3F3;
+    background-color: #F5F7F9;
     border-right: 1px solid #B7E7E9;
 }
 .doc-sidebar__menu,
