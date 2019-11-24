@@ -637,13 +637,14 @@ img{
 
 
 /* Форматированные текст ckeditor5 (через [5]) */
+.ck-content{margin:15px 0}
 .ck-content,
 .ck-content *{font:15px arial}
 .ck-content i,
 .ck-content i strong{font-style:italic}
 .ck-content strong{font-weight:bold}
 .ck-content i,.ck-content strong{font-size:inherit}
-.ck-content p{margin:10px 0 10px}
+.ck-content p{margin:0}
 .ck-content h1{
 	font:normal 22px Arial;
 	margin:15px 0;
